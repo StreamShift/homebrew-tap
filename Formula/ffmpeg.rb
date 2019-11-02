@@ -85,6 +85,7 @@ class Ffmpeg < Formula
   depends_on "zimg" => :optional
 
   def install
+    ENV.append_to_cflags "-fno-stack-check" if DevelopmentTools.clang_build_version >= 1010
     args = %W[
       --prefix=#{prefix}
       --enable-shared
